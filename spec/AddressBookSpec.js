@@ -21,3 +21,17 @@ describe('Address Book', function addressBook() {
     expect(ab.getContact(0)).not.toBeDefined();
   });
 });
+
+describe('Async Address Book', function asyncAddressBook() {
+  var ab = new AddressBook();
+
+  beforeEach(function startDone(done) {
+    ab.getInitialContacts(function endDone() {
+      done();
+    });
+  });
+  it('should grab initial contacts', function shouldGrab(done) {
+    expect(ab.initialComplete).toBe(true);
+    done();
+  });
+});
